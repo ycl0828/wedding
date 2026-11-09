@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>이예찬 · 함현주 결혼합니다</title>
+<meta name="description" content="2027년 3월 20일 토요일 낮 12시, 로얄파크컨벤션">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ycl0828.github.io/wedding/">
+<meta property="og:title" content="이예찬 · 함현주 결혼합니다">
+<meta property="og:description" content="2027년 3월 20일 토요일 낮 12시, 로얄파크컨벤션">
+<meta property="og:image" content="https://ycl0828.github.io/wedding/images/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="theme-color" content="#f6f2ec">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="preload" as="image" href="images/full/01.jpg" fetchpriority="high">
+</head>
+<body>
+
+<main id="app">
+  <!-- 커버 -->
+  <section id="cover">
+    <img src="images/full/01.jpg" alt="" id="coverImg" fetchpriority="high">
+    <div class="cover-text">
+      <p class="label">The Wedding of</p>
+      <h1><span data-k="groom.name"></span><i>and</i><span data-k="bride.name"></span></h1>
+    </div>
+  </section>
+  <div class="cover-meta">
+    <p class="cover-date" id="coverDate"></p>
+    <p class="venue-line"></p>
+  </div>
+
+  <!-- 인사말 -->
+  <section id="invite" class="sec">
+    <p class="label reveal">Invitation</p>
+    <div class="greeting reveal"></div>
+    <dl class="parents reveal">
+      <div><dt><span data-k="groom.father"></span> · <span data-k="groom.mother"></span></dt><dd><small>의 <span data-k="groom.relation"></span></small> <b data-k="groom.short"></b></dd></div>
+      <div><dt><span data-k="bride.father"></span> · <span data-k="bride.mother"></span></dt><dd><small>의 <span data-k="bride.relation"></span></small> <b data-k="bride.short"></b></dd></div>
+    </dl>
+  </section>
+
+  <figure class="photo-break reveal"><img src="images/full/09.jpg" alt="" loading="lazy" width="1067" height="1600"></figure>
+
+  <!-- 예식 일시 -->
+  <section id="info" class="sec">
+    <p class="label reveal">When</p>
+    <p class="info-date reveal" data-date="full"></p>
+    <div class="calendar reveal" id="calendar"></div>
+    <p class="dday reveal" id="dday"></p>
+  </section>
+
+  <!-- 갤러리 -->
+  <section id="gallery" class="sec">
+    <p class="label reveal">Gallery</p>
+    <div class="grid reveal" id="grid"></div>
+    <button class="text-btn reveal" id="moreBtn" hidden>사진 더보기</button>
+  </section>
+
+  <!-- 오시는 길 -->
+  <section id="location" class="sec">
+    <p class="label reveal">Location</p>
+    <div class="venue reveal">
+      <h2 class="venue-line"></h2>
+      <p class="v-addr"><span data-k="venue.address"></span></p>
+      <div class="v-actions">
+        <button class="chip" id="copyAddr">주소 복사</button>
+        <a class="chip" id="telLink">전화하기</a>
+      </div>
+    </div>
+    <div class="map reveal"><iframe id="mapFrame" title="예식장 위치 지도" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+    <div class="nav-btns reveal">
+      <a id="navNaver" target="_blank" rel="noopener">네이버 지도</a>
+      <a id="navKakao" target="_blank" rel="noopener">카카오맵</a>
+      <a id="navTmap" role="button">티맵</a>
+    </div>
+    <div class="transport reveal" id="transport"></div>
+  </section>
+
+  <!-- 화환 안내 -->
+  <section id="flower" class="sec notice" hidden>
+    <p class="reveal">예식장 사정으로 화환은 받지 않습니다.<br>마음만 감사히 받겠습니다.</p>
+  </section>
+
+  <!-- 참석 여부 -->
+  <section id="rsvp" class="sec">
+    <p class="label reveal">RSVP</p>
+    <h2 class="reveal">참석 여부</h2>
+    <p class="body-text reveal">식사 준비를 위해 미리 알려주시면<br>큰 도움이 됩니다.</p>
+    <button class="btn reveal" data-open="rsvpForm">참석 여부 알려주기</button>
+  </section>
+
+  <!-- 계좌 -->
+  <section id="account" class="sec">
+    <p class="label reveal">For Your Heart</p>
+    <h2 class="reveal">마음 전하실 곳</h2>
+    <p class="body-text reveal">참석이 어려우신 분들을 위해<br>계좌번호를 함께 적어둡니다.</p>
+    <div class="accs reveal">
+      <details class="acc" data-side="groom"><summary>신랑측</summary><div class="acc-body"></div></details>
+      <details class="acc" data-side="bride"><summary>신부측</summary><div class="acc-body"></div></details>
+    </div>
+  </section>
+
+  <footer>
+    <div class="share">
+      <button class="btn line" id="shareBtn">청첩장 공유하기</button>
+      <button class="btn line" id="copyLink">링크 복사</button>
+    </div>
+    <p class="sign"><span data-k="groom.en"></span> &amp; <span data-k="bride.en"></span></p>
+  </footer>
+</main>
+
+<!-- RSVP 폼 -->
+<dialog class="sheet" id="rsvpForm" aria-labelledby="rf-t">
+  <div class="sheet-head"><h3 id="rf-t">참석 여부</h3><button class="x" data-close aria-label="닫기"></button></div>
+  <form id="form" novalidate>
+    <fieldset><legend>어느 쪽 하객이신가요?</legend>
+      <div class="seg"><label><input type="radio" name="side" value="신랑측"><span>신랑측</span></label><label><input type="radio" name="side" value="신부측"><span>신부측</span></label></div>
+    </fieldset>
+    <fieldset><legend>참석하시나요?</legend>
+      <div class="seg"><label><input type="radio" name="attend" value="참석"><span>참석할게요</span></label><label><input type="radio" name="attend" value="불참석"><span>어려워요</span></label></div>
+    </fieldset>
+    <fieldset class="if-attend"><legend>식사하시나요?</legend>
+      <div class="seg three"><label><input type="radio" name="meal" value="O"><span>예정</span></label><label><input type="radio" name="meal" value="X"><span>안 함</span></label><label><input type="radio" name="meal" value="미정"><span>미정</span></label></div>
+    </fieldset>
+    <label class="field"><span>성함</span><input name="name" maxlength="30" autocomplete="name"></label>
+    <label class="field if-attend"><span>본인 포함 인원</span>
+      <select name="count"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option value="6+">6명 이상</option></select></label>
+    <label class="field if-attend"><span>동행인 성함 <small>(선택)</small></span><input name="companion" maxlength="60"></label>
+    <label class="field"><span>남기실 말씀 <small>(선택)</small></span><textarea name="message" rows="3" maxlength="500"></textarea></label>
+    <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <div class="agree"><label><input type="checkbox" name="agree"> 개인정보 수집·이용에 동의합니다</label> <button type="button" class="link" data-open="privacy">내용 보기</button></div>
+    <p class="form-err" id="formErr" role="alert"></p>
+    <button class="btn block" id="submitBtn" type="submit">보내기</button>
+  </form>
+  <div class="done" id="formDone" hidden>
+    <p class="done-title">전달되었습니다</p>
+    <p>알려주셔서 감사합니다.<br>예식 날 뵙겠습니다.</p>
+    <button class="btn line" data-close>닫기</button>
+  </div>
+</dialog>
+
+<!-- 개인정보 -->
+<dialog class="popup" id="privacy" aria-labelledby="pv-t">
+  <button class="x" data-close aria-label="닫기"></button>
+  <h3 id="pv-t">개인정보 수집·이용 안내</h3>
+  <dl>
+    <dt>수집 항목</dt><dd>성함, 동행인 성함, 참석 인원, 남기신 말씀</dd>
+    <dt>이용 목적</dt><dd>참석 인원 확인 및 식사 준비</dd>
+    <dt>보유 기간</dt><dd>결혼식 후 1개월까지 보관 후 삭제</dd>
+    <dt>동의 거부</dt><dd>동의하지 않으실 수 있으며, 이 경우 온라인으로 참석 여부를 전달하실 수 없습니다.</dd>
+  </dl>
+</dialog>
+
+<!-- 라이트박스 -->
+<dialog id="lightbox" aria-label="사진 크게 보기">
+  <div class="lb-track" id="lbTrack"></div>
+  <button class="x light" data-close aria-label="닫기"></button>
+  <button class="lb-nav prev" id="lbPrev" aria-label="이전 사진"></button>
+  <button class="lb-nav next" id="lbNext" aria-label="다음 사진"></button>
+  <p class="lb-count" id="lbCount"></p>
+</dialog>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
