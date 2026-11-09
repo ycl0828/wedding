@@ -30,23 +30,19 @@ window.WEDDING = {
     { title: "주차", items: [ "전쟁기념관 내 주차장 이용 가능" ] },
   ],
 
-  // 인사말 — 빈 줄("")로 문단을 나눕니다.
   greeting: [
-    "봄이 오는 길목에서",
-    "저희 두 사람이 부부가 되려 합니다.",
+    "서로 다른 길을 걸어온 두 사람이",
+    "이제 같은 곳을 바라보며 함께 걸어가려 합니다.",
     "",
-    "늘 곁에서 아껴주신 분들 앞에서",
-    "평생을 함께하겠다는 약속을 하고 싶습니다.",
-    "",
-    "귀한 걸음 하시어",
-    "그 시작을 함께 지켜봐 주세요.",
+    "저희의 새로운 시작을",
+    "따뜻한 마음으로 축복해 주신다면",
+    "그 사랑을 오래도록 간직하며 살겠습니다.",
   ],
 
   // 화환 안내 섹션 — 예식장에서 화환을 받지 않는 경우에만 true
   showFlowerNotice: false,
 
-  // ⚠️ 계좌 정보 — 실제 정보로 바꿔주세요.
-  //    은행명이 "은행명"이거나 계좌번호가 0으로만 된 줄은 화면에 표시되지 않습니다.
+  // ⚠️ 계좌 정보 — 실제 정보로 바꿔주세요. 필요 없는 줄은 지우면 됩니다.
   accounts: {
     groom: [
       { role: "신랑", name: "이예찬", bank: "농협은행", number: "312-5127-0438-51" },
@@ -55,7 +51,7 @@ window.WEDDING = {
     ],
     bride: [
       { role: "신부", name: "함현주", bank: "케이뱅크", number: "100-206-927183" },
-      { role: "신부 아버지", name: "함관우", bank: "은행명", number: "000-0000-0000-00" },
+      { role: "신부 아버지", name: "함관수", bank: "은행명", number: "000-0000-0000-00" },
       { role: "신부 어머니", name: "정은경", bank: "은행명", number: "000-0000-0000-00" },
     ],
   },
@@ -64,6 +60,9 @@ window.WEDDING = {
   // 비워두면 폼은 보이지만 제출 시 안내 메시지만 뜹니다.
   rsvpEndpoint: "https://script.google.com/macros/s/AKfycbycLm02_hz7q8JRGwX2lukSc9Imo_f6QHIElKlz--qBxuFNtUpN3Y7xoTOyED-ytLZW/exec",
 
-  // 갤러리 사진 — images/full/NN.jpg(원본)와 images/thumb/NN.jpg(정사각 썸네일) 쌍으로 넣어주세요.
+  // 처음 접속 시 참석 여부 팝업 띄우기
+  rsvpPopupOnLoad: true,
+
+  cover: "images/full/01.jpg",
   photos: Array.from({ length: 12 }, (_, i) => String(i + 1).padStart(2, "0")),
 };

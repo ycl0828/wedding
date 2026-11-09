@@ -3,172 +3,239 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>이예찬 · 함현주 결혼합니다</title>
-<meta name="description" content="2027년 3월 20일 토요일 낮 12시, 로얄파크컨벤션">
+<title>예찬 ♥ 현주 결혼합니다</title>
+<meta name="description" content="이예찬 · 함현주의 결혼식에 초대합니다. 로얄파크컨벤션">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://ycl0828.github.io/wedding/">
-<meta property="og:title" content="이예찬 · 함현주 결혼합니다">
-<meta property="og:description" content="2027년 3월 20일 토요일 낮 12시, 로얄파크컨벤션">
+<meta property="og:title" content="예찬 ♥ 현주 결혼합니다">
+<meta property="og:description" content="저희 두 사람의 새로운 시작에 초대합니다. 로얄파크컨벤션">
 <meta property="og:image" content="https://ycl0828.github.io/wedding/images/og.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="theme-color" content="#f6f2ec">
+<meta name="theme-color" content="#5c0f24">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
-<link rel="preload" as="image" href="images/full/01.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="images/full/01.jpg">
 </head>
 <body>
+
+<!-- 인트로 -->
+<div id="intro" aria-hidden="true">
+  <div class="intro-text">
+    <span class="line l1">We're getting</span>
+    <span class="line l2">Married!</span>
+  </div>
+</div>
+
+<!-- 상단 헤더 -->
+<header id="topbar">
+  <button class="icon-btn" id="menuBtn" aria-label="메뉴 열기"><span></span><span></span><span></span></button>
+  <div class="top-title"><span data-k="groom.short"></span><i class="heart">♥</i><span data-k="bride.short"></span></div>
+  <span class="icon-btn ghost"></span>
+</header>
+
+<!-- 좌측 메뉴 -->
+<div id="drawerDim"></div>
+<nav id="drawer" aria-label="메뉴">
+  <div class="drawer-head">
+    <div class="script"><span data-k="groom.en"></span> &amp; <span data-k="bride.en"></span></div>
+    <div class="drawer-date" data-date="full"></div>
+  </div>
+  <a href="#cover">처음으로</a>
+  <a href="#invite">초대합니다</a>
+  <a href="#info">예식 안내</a>
+  <a href="#gallery">갤러리</a>
+  <a href="#location">오시는 길</a>
+  <a href="#rsvp">참석 여부 전달</a>
+  <a href="#account">마음 전하실 곳</a>
+</nav>
 
 <main id="app">
   <!-- 커버 -->
   <section id="cover">
-    <img src="images/full/01.jpg" alt="" id="coverImg" fetchpriority="high">
-    <div class="cover-text">
-      <p class="label">The Wedding of</p>
-      <h1><span data-k="groom.name"></span><i>and</i><span data-k="bride.name"></span></h1>
+    <div class="cover-img"><img src="images/full/01.jpg" alt="웨딩 사진" id="coverImg"></div>
+    <div class="cover-script">
+      <span class="w1">Welcome</span>
+      <span class="w2">to our wedding</span>
+    </div>
+    <div class="cover-meta">
+      <hr>
+      <p data-date="full"></p>
+      <p class="venue-line"></p>
     </div>
   </section>
-  <div class="cover-meta">
-    <p class="cover-date" id="coverDate"></p>
-    <p class="venue-line"></p>
-  </div>
 
-  <!-- 인사말 -->
+  <!-- 초대 -->
   <section id="invite" class="sec">
-    <p class="label reveal">Invitation</p>
-    <div class="greeting reveal"></div>
-    <dl class="parents reveal">
-      <div><dt><span data-k="groom.father"></span> · <span data-k="groom.mother"></span></dt><dd><small>의 <span data-k="groom.relation"></span></small> <b data-k="groom.short"></b></dd></div>
-      <div><dt><span data-k="bride.father"></span> · <span data-k="bride.mother"></span></dt><dd><small>의 <span data-k="bride.relation"></span></small> <b data-k="bride.short"></b></dd></div>
-    </dl>
+    <p class="eyebrow fade">INVITATION</p>
+    <h2 class="fade">소중한 분들을 초대합니다</h2>
+    <div class="greeting fade"></div>
+    <div class="parents fade">
+      <p><span data-k="groom.father"></span> · <span data-k="groom.mother"></span><small>의</small> <small data-k="groom.relation"></small> <b data-k="groom.short"></b></p>
+      <p><span data-k="bride.father"></span> · <span data-k="bride.mother"></span><small>의</small> <small data-k="bride.relation"></small> <b data-k="bride.short"></b></p>
+    </div>
   </section>
 
-  <figure class="photo-break reveal"><img src="images/full/09.jpg" alt="" loading="lazy" width="1067" height="1600"></figure>
+  <div class="photo-break fade"><img src="images/full/02.jpg" alt="" loading="lazy"></div>
 
-  <!-- 예식 일시 -->
+  <!-- 예식 안내 + 달력 -->
   <section id="info" class="sec">
-    <p class="label reveal">When</p>
-    <p class="info-date reveal" data-date="full"></p>
-    <div class="calendar reveal" id="calendar"></div>
-    <p class="dday reveal" id="dday"></p>
+    <p class="eyebrow fade">WEDDING DAY</p>
+    <h2 class="fade">예식 안내</h2>
+    <p class="fade info-date" data-date="full"></p>
+    <p class="fade info-venue venue-line"></p>
+    <div class="calendar fade" id="calendar"></div>
+
+    <div class="countdown-wrap fade">
+      <p class="cd-title"><span data-k="groom.short"></span> <i class="heart">♥</i> <span data-k="bride.short"></span> 결혼식까지</p>
+      <div class="countdown">
+        <div><b id="cdD">0</b><span>Days</span></div>
+        <div><b id="cdH">0</b><span>Hours</span></div>
+        <div><b id="cdM">0</b><span>Minutes</span></div>
+        <div><b id="cdS">0</b><span>Seconds</span></div>
+      </div>
+      <p class="cd-msg" id="cdMsg"></p>
+    </div>
   </section>
 
   <!-- 갤러리 -->
   <section id="gallery" class="sec">
-    <p class="label reveal">Gallery</p>
-    <div class="grid reveal" id="grid"></div>
-    <button class="text-btn reveal" id="moreBtn" hidden>사진 더보기</button>
+    <p class="eyebrow fade">GALLERY</p>
+    <h2 class="fade">갤러리</h2>
+    <div class="bubble-wrap fade">
+      <div class="swipe-hint" id="swipeHint">옆으로 넘겨보세요 <span>›››</span></div>
+      <div class="bubbles" id="bubbles"><div class="bubble-track" id="bubbleTrack"></div></div>
+    </div>
   </section>
 
   <!-- 오시는 길 -->
   <section id="location" class="sec">
-    <p class="label reveal">Location</p>
-    <div class="venue reveal">
-      <h2 class="venue-line"></h2>
-      <p class="v-addr"><span data-k="venue.address"></span></p>
-      <div class="v-actions">
-        <button class="chip" id="copyAddr">주소 복사</button>
-        <a class="chip" id="telLink">전화하기</a>
-      </div>
+    <p class="eyebrow fade">LOCATION</p>
+    <h2 class="fade">오시는 길</h2>
+    <div class="venue-box fade">
+      <p class="v-name"><span data-k="venue.name"></span> <a id="telLink" class="tel" aria-label="전화 걸기"><svg viewBox="0 0 24 24" width="15" height="15"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.6a1 1 0 0 1-.25 1z"/></svg></a></p>
+      <p class="v-hall" data-k="venue.hall"></p>
+      <p class="v-addr"><span data-k="venue.address"></span> <button class="copy-mini" id="copyAddr">복사</button></p>
     </div>
-    <div class="map reveal"><iframe id="mapFrame" title="예식장 위치 지도" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
-    <div class="nav-btns reveal">
-      <a id="navNaver" target="_blank" rel="noopener">네이버 지도</a>
-      <a id="navKakao" target="_blank" rel="noopener">카카오맵</a>
-      <a id="navTmap" role="button">티맵</a>
+    <div class="map fade"><iframe id="mapFrame" title="예식장 지도" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+    <div class="nav-btns fade">
+      <a id="navNaver" target="_blank" rel="noopener"><i class="dot naver"></i>네이버지도</a>
+      <a id="navKakao" target="_blank" rel="noopener"><i class="dot kakao"></i>카카오맵</a>
+      <a id="navTmap"><i class="dot tmap"></i>티맵</a>
     </div>
-    <div class="transport reveal" id="transport"></div>
+    <div class="transport fade" id="transport"></div>
   </section>
 
   <!-- 화환 안내 -->
-  <section id="flower" class="sec notice" hidden>
-    <p class="reveal">예식장 사정으로 화환은 받지 않습니다.<br>마음만 감사히 받겠습니다.</p>
+  <section id="flower" class="sec" hidden>
+    <div class="notice-box fade">
+      <span class="notice-tab">화환 안내</span>
+      <p>예식장 사정상 화환은 정중히 사양드리오니<br>너른 마음으로 양해 부탁드립니다.</p>
+    </div>
   </section>
 
   <!-- 참석 여부 -->
   <section id="rsvp" class="sec">
-    <p class="label reveal">RSVP</p>
-    <h2 class="reveal">참석 여부</h2>
-    <p class="body-text reveal">식사 준비를 위해 미리 알려주시면<br>큰 도움이 됩니다.</p>
-    <button class="btn reveal" data-open="rsvpForm">참석 여부 알려주기</button>
+    <p class="eyebrow fade">R.S.V.P.</p>
+    <h2 class="fade">참석 여부 전달</h2>
+    <p class="fade body-text">결혼식에 참석해주시는 모든 분들을<br>더욱 특별하게 모시고자 하오니,<br>참석 여부 전달을 부탁드립니다.</p>
+    <button class="btn fade" data-open="rsvpForm">참석 여부 전달하기</button>
   </section>
 
   <!-- 계좌 -->
   <section id="account" class="sec">
-    <p class="label reveal">For Your Heart</p>
-    <h2 class="reveal">마음 전하실 곳</h2>
-    <p class="body-text reveal">참석이 어려우신 분들을 위해<br>계좌번호를 함께 적어둡니다.</p>
-    <div class="accs reveal">
-      <details class="acc" data-side="groom"><summary>신랑측</summary><div class="acc-body"></div></details>
-      <details class="acc" data-side="bride"><summary>신부측</summary><div class="acc-body"></div></details>
-    </div>
+    <p class="eyebrow fade">WITH LOVE</p>
+    <h2 class="fade">마음 전하실 곳</h2>
+    <p class="fade body-text">멀리서도 축하의 마음을<br>전하고 싶으신 분들을 위해<br>계좌번호를 안내드립니다.<br><br>소중한 축하를 보내주셔서 감사드리며,<br>따뜻한 마음에 깊이 감사드립니다.</p>
+    <div class="acc fade" data-side="groom"><button class="acc-head">신랑측 <i class="chev"></i></button><div class="acc-body"></div></div>
+    <div class="acc fade" data-side="bride"><button class="acc-head">신부측 <i class="chev"></i></button><div class="acc-body"></div></div>
   </section>
 
   <footer>
-    <div class="share">
-      <button class="btn line" id="shareBtn">청첩장 공유하기</button>
-      <button class="btn line" id="copyLink">링크 복사</button>
-    </div>
-    <p class="sign"><span data-k="groom.en"></span> &amp; <span data-k="bride.en"></span></p>
+    <div class="script"><span data-k="groom.en"></span> &amp; <span data-k="bride.en"></span></div>
+    <p>Thank you for celebrating with us</p>
   </footer>
 </main>
 
-<!-- RSVP 폼 -->
-<dialog class="sheet" id="rsvpForm" aria-labelledby="rf-t">
-  <div class="sheet-head"><h3 id="rf-t">참석 여부</h3><button class="x" data-close aria-label="닫기"></button></div>
-  <form id="form" novalidate>
-    <fieldset><legend>어느 쪽 하객이신가요?</legend>
-      <div class="seg"><label><input type="radio" name="side" value="신랑측"><span>신랑측</span></label><label><input type="radio" name="side" value="신부측"><span>신부측</span></label></div>
-    </fieldset>
-    <fieldset><legend>참석하시나요?</legend>
-      <div class="seg"><label><input type="radio" name="attend" value="참석"><span>참석할게요</span></label><label><input type="radio" name="attend" value="불참석"><span>어려워요</span></label></div>
-    </fieldset>
-    <fieldset class="if-attend"><legend>식사하시나요?</legend>
-      <div class="seg three"><label><input type="radio" name="meal" value="O"><span>예정</span></label><label><input type="radio" name="meal" value="X"><span>안 함</span></label><label><input type="radio" name="meal" value="미정"><span>미정</span></label></div>
-    </fieldset>
-    <label class="field"><span>성함</span><input name="name" maxlength="30" autocomplete="name"></label>
-    <label class="field if-attend"><span>본인 포함 인원</span>
-      <select name="count"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option value="6+">6명 이상</option></select></label>
-    <label class="field if-attend"><span>동행인 성함 <small>(선택)</small></span><input name="companion" maxlength="60"></label>
-    <label class="field"><span>남기실 말씀 <small>(선택)</small></span><textarea name="message" rows="3" maxlength="500"></textarea></label>
-    <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-    <div class="agree"><label><input type="checkbox" name="agree"> 개인정보 수집·이용에 동의합니다</label> <button type="button" class="link" data-open="privacy">내용 보기</button></div>
-    <p class="form-err" id="formErr" role="alert"></p>
-    <button class="btn block" id="submitBtn" type="submit">보내기</button>
-  </form>
-  <div class="done" id="formDone" hidden>
-    <p class="done-title">전달되었습니다</p>
-    <p>알려주셔서 감사합니다.<br>예식 날 뵙겠습니다.</p>
-    <button class="btn line" data-close>닫기</button>
+<!-- 플로팅 버튼 -->
+<div class="floating">
+  <button class="fab" id="toTop" aria-label="맨 위로"><svg viewBox="0 0 24 24" width="18" height="18"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M6 15l6-6 6 6"/></svg></button>
+  <button class="fab" id="shareBtn" aria-label="공유하기"><svg viewBox="0 0 24 24" width="17" height="17"><g fill="currentColor"><circle cx="18" cy="5" r="2.6"/><circle cx="6" cy="12" r="2.6"/><circle cx="18" cy="19" r="2.6"/></g><path stroke="currentColor" stroke-width="1.6" d="M8.3 10.8l7.4-4.4M8.3 13.2l7.4 4.4"/></svg></button>
+</div>
+
+<!-- RSVP 안내 팝업 -->
+<div class="modal" id="rsvpIntro" role="dialog" aria-modal="true" aria-labelledby="ri-t">
+  <div class="modal-card small">
+    <button class="x" data-close aria-label="닫기"></button>
+    <h3 id="ri-t">참석 여부 전달</h3>
+    <p class="body-text">결혼식에 참석해주시는 모든 분들을<br>더욱 특별하게 모시고자 하오니,<br>참석 여부 전달을 부탁드립니다.</p>
+    <hr class="dash">
+    <ul class="ri-list">
+      <li><svg viewBox="0 0 24 24" width="13"><path fill="none" stroke="currentColor" stroke-width="2" d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><span>신랑 <span data-k="groom.name"></span>, 신부 <span data-k="bride.name"></span></span></li>
+      <li><svg viewBox="0 0 24 24" width="13"><rect x="4" y="5" width="16" height="15" rx="1" fill="none" stroke="currentColor" stroke-width="2"/><path stroke="currentColor" stroke-width="2" d="M4 10h16"/></svg><span data-date="full"></span></li>
+      <li><svg viewBox="0 0 24 24" width="13"><path fill="currentColor" d="M3 11l18-8-8 18-2-8z"/></svg><span class="venue-line"></span></li>
+    </ul>
+    <button class="btn" data-open="rsvpForm">참석 여부 전달하기</button>
+    <label class="skip-today"><input type="checkbox" id="skipToday"> 오늘 하루 보지 않기</label>
   </div>
-</dialog>
+</div>
+
+<!-- RSVP 폼 -->
+<div class="modal sheet" id="rsvpForm" role="dialog" aria-modal="true" aria-labelledby="rf-t">
+  <div class="modal-card full">
+    <div class="sheet-head"><h3 id="rf-t">참석 여부 전달</h3><button class="x" data-close aria-label="닫기"></button></div>
+    <form id="form" novalidate>
+      <fieldset><legend>어느 측 하객이신가요? <em>*</em></legend>
+        <div class="seg"><label><input type="radio" name="side" value="신랑측"><span>신랑측</span></label><label><input type="radio" name="side" value="신부측"><span>신부측</span></label></div>
+      </fieldset>
+      <fieldset><legend>참석여부 <em>*</em></legend>
+        <div class="seg"><label><input type="radio" name="attend" value="참석"><span>참석</span></label><label><input type="radio" name="attend" value="불참석"><span>불참석</span></label></div>
+      </fieldset>
+      <fieldset class="if-attend"><legend>식사여부 <em>*</em></legend>
+        <div class="seg three"><label><input type="radio" name="meal" value="O"><span>O</span></label><label><input type="radio" name="meal" value="X"><span>X</span></label><label><input type="radio" name="meal" value="미정"><span>미정</span></label></div>
+      </fieldset>
+      <label class="field"><span>성함 <em>*</em></span><input name="name" maxlength="30" autocomplete="name"></label>
+      <label class="field if-attend"><span>본인 포함 참석 인원</span>
+        <select name="count"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option value="6+">6명 이상</option></select></label>
+      <label class="field if-attend"><span>동행인 성함</span><input name="companion" maxlength="60"></label>
+      <label class="field"><span>전달사항</span><textarea name="message" rows="4" maxlength="500"></textarea></label>
+      <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="agree"><label><input type="checkbox" name="agree"> 개인정보 수집 및 활용 동의</label> <button type="button" class="link" data-open="privacy">[자세히보기]</button></div>
+      <p class="form-err" id="formErr" role="alert"></p>
+      <button class="btn block" id="submitBtn" type="submit" disabled>전달</button>
+    </form>
+    <div class="done" id="formDone" hidden>
+      <div class="script">Thank you</div>
+      <p>참석 여부가 전달되었습니다.<br>소중한 마음 감사합니다.</p>
+      <button class="btn" data-close>닫기</button>
+    </div>
+  </div>
+</div>
 
 <!-- 개인정보 -->
-<dialog class="popup" id="privacy" aria-labelledby="pv-t">
-  <button class="x" data-close aria-label="닫기"></button>
-  <h3 id="pv-t">개인정보 수집·이용 안내</h3>
-  <dl>
-    <dt>수집 항목</dt><dd>성함, 동행인 성함, 참석 인원, 남기신 말씀</dd>
-    <dt>이용 목적</dt><dd>참석 인원 확인 및 식사 준비</dd>
-    <dt>보유 기간</dt><dd>결혼식 후 1개월까지 보관 후 삭제</dd>
-    <dt>동의 거부</dt><dd>동의하지 않으실 수 있으며, 이 경우 온라인으로 참석 여부를 전달하실 수 없습니다.</dd>
-  </dl>
-</dialog>
+<div class="modal" id="privacy" role="dialog" aria-modal="true" aria-labelledby="pv-t">
+  <div class="modal-card small left">
+    <button class="x" data-close aria-label="닫기"></button>
+    <h3 id="pv-t">(필수) 개인정보 수집 및 활용 동의</h3>
+    <dl>
+      <dt>[수집 항목]</dt><dd>성함, 동행인 성함, 참석 인원, 전달사항 등 참석 여부 전달에 입력된 항목</dd>
+      <dt>[이용 목적]</dt><dd>결혼식 참석 여부 확인 및 하객 안내</dd>
+      <dt>[보유 및 이용 기간]</dt><dd>동의일로부터 결혼식 후 1개월까지</dd>
+      <dt>[동의 거부권 및 불이익 사항]</dt><dd>동의를 거부하실 수 있으며, 이 경우 참석 여부 전달이 불가합니다.</dd>
+    </dl>
+  </div>
+</div>
 
 <!-- 라이트박스 -->
-<dialog id="lightbox" aria-label="사진 크게 보기">
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="사진 크게 보기">
+  <button class="x light" id="lbClose" aria-label="닫기"></button>
   <div class="lb-track" id="lbTrack"></div>
-  <button class="x light" data-close aria-label="닫기"></button>
-  <button class="lb-nav prev" id="lbPrev" aria-label="이전 사진"></button>
-  <button class="lb-nav next" id="lbNext" aria-label="다음 사진"></button>
-  <p class="lb-count" id="lbCount"></p>
-</dialog>
+  <button class="lb-nav prev" id="lbPrev" aria-label="이전 사진">‹</button>
+  <button class="lb-nav next" id="lbNext" aria-label="다음 사진">›</button>
+  <div class="lb-count" id="lbCount"></div>
+</div>
 
-<div id="toast" role="status" aria-live="polite"></div>
+<div id="toast" role="status"></div>
 
 <script src="config.js"></script>
 <script src="app.js"></script>
