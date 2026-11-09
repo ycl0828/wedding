@@ -10,10 +10,10 @@
 <meta property="og:title" content="예찬 ♥ 현주 결혼합니다">
 <meta property="og:description" content="저희 두 사람의 새로운 시작에 초대합니다. 로얄파크컨벤션">
 <meta property="og:image" content="https://ycl0828.github.io/wedding/images/og.jpg">
-<meta name="theme-color" content="#5c0f24">
+<meta name="theme-color" content="#2a1418">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Pinyon+Script&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <link rel="preload" as="image" href="images/full/01.jpg">
 </head>
@@ -21,16 +21,17 @@
 
 <!-- 인트로 -->
 <div id="intro" aria-hidden="true">
-  <div class="intro-text">
-    <span class="line l1">We're getting</span>
-    <span class="line l2">Married!</span>
+  <div class="intro-inner">
+    <p class="intro-top">The Wedding Day</p>
+    <p class="intro-names"><span class="line"><span data-k="groom.en"></span> &amp; <span data-k="bride.en"></span></span></p>
+    <p class="intro-date" data-date="dot"></p>
   </div>
 </div>
 
 <!-- 상단 헤더 -->
 <header id="topbar">
   <button class="icon-btn" id="menuBtn" aria-label="메뉴 열기"><span></span><span></span><span></span></button>
-  <div class="top-title"><span data-k="groom.short"></span><i class="heart">♥</i><span data-k="bride.short"></span></div>
+  <div class="top-title"><span data-k="groom.short"></span><i>&amp;</i><span data-k="bride.short"></span></div>
   <span class="icon-btn ghost"></span>
 </header>
 
@@ -54,45 +55,46 @@
   <!-- 커버 -->
   <section id="cover">
     <div class="cover-img"><img src="images/full/01.jpg" alt="웨딩 사진" id="coverImg"></div>
-    <div class="cover-script">
-      <span class="w1">Welcome</span>
-      <span class="w2">to our wedding</span>
+    <canvas class="petals" id="petals" aria-hidden="true"></canvas>
+    <div class="cover-text">
+      <p class="cover-label">Save the Date</p>
+      <h1 class="cover-names"><span data-k="groom.en"></span><i>&amp;</i><span data-k="bride.en"></span></h1>
+      <div class="cover-rule"></div>
+      <p class="cover-date" data-date="dot"></p>
+      <p class="cover-venue"><span data-date="short"></span> · <span class="venue-line"></span></p>
     </div>
-    <div class="cover-meta">
-      <hr>
-      <p data-date="full"></p>
-      <p class="venue-line"></p>
-    </div>
+    <a href="#invite" class="scroll-cue" aria-label="아래로"><span></span></a>
   </section>
 
   <!-- 초대 -->
   <section id="invite" class="sec">
-    <p class="eyebrow fade">INVITATION</p>
-    <h2 class="fade">소중한 분들을 초대합니다</h2>
-    <div class="greeting fade"></div>
-    <div class="parents fade">
+    <div class="frame fade">
+    <p class="eyebrow">Invitation</p>
+    <h2>소중한 분들을 초대합니다</h2>
+    <div class="greeting"></div>
+    <div class="parents">
       <p><span data-k="groom.father"></span> · <span data-k="groom.mother"></span><small>의</small> <small data-k="groom.relation"></small> <b data-k="groom.short"></b></p>
       <p><span data-k="bride.father"></span> · <span data-k="bride.mother"></span><small>의</small> <small data-k="bride.relation"></small> <b data-k="bride.short"></b></p>
     </div>
+    </div>
   </section>
 
-  <div class="photo-break fade"><img src="images/full/02.jpg" alt="" loading="lazy"></div>
+  <figure class="photo-break fade"><div class="arch"><img src="images/full/09.jpg" alt="" loading="lazy"></div></figure>
 
   <!-- 예식 안내 + 달력 -->
   <section id="info" class="sec">
-    <p class="eyebrow fade">WEDDING DAY</p>
+    <p class="eyebrow fade">Wedding Day</p>
     <h2 class="fade">예식 안내</h2>
     <p class="fade info-date" data-date="full"></p>
     <p class="fade info-venue venue-line"></p>
     <div class="calendar fade" id="calendar"></div>
 
     <div class="countdown-wrap fade">
-      <p class="cd-title"><span data-k="groom.short"></span> <i class="heart">♥</i> <span data-k="bride.short"></span> 결혼식까지</p>
       <div class="countdown">
-        <div><b id="cdD">0</b><span>Days</span></div>
-        <div><b id="cdH">0</b><span>Hours</span></div>
-        <div><b id="cdM">0</b><span>Minutes</span></div>
-        <div><b id="cdS">0</b><span>Seconds</span></div>
+        <div><b id="cdD">0</b><span>Days</span></div><i>:</i>
+        <div><b id="cdH">0</b><span>Hours</span></div><i>:</i>
+        <div><b id="cdM">0</b><span>Min</span></div><i>:</i>
+        <div><b id="cdS">0</b><span>Sec</span></div>
       </div>
       <p class="cd-msg" id="cdMsg"></p>
     </div>
@@ -100,17 +102,14 @@
 
   <!-- 갤러리 -->
   <section id="gallery" class="sec">
-    <p class="eyebrow fade">GALLERY</p>
-    <h2 class="fade">갤러리</h2>
-    <div class="bubble-wrap fade">
-      <div class="swipe-hint" id="swipeHint">옆으로 넘겨보세요 <span>›››</span></div>
-      <div class="bubbles" id="bubbles"><div class="bubble-track" id="bubbleTrack"></div></div>
-    </div>
+    <p class="eyebrow fade">Gallery</p>
+    <h2 class="fade">우리의 순간들</h2>
+    <div class="grid fade" id="grid"></div>
   </section>
 
   <!-- 오시는 길 -->
   <section id="location" class="sec">
-    <p class="eyebrow fade">LOCATION</p>
+    <p class="eyebrow fade">Location</p>
     <h2 class="fade">오시는 길</h2>
     <div class="venue-box fade">
       <p class="v-name"><span data-k="venue.name"></span> <a id="telLink" class="tel" aria-label="전화 걸기"><svg viewBox="0 0 24 24" width="15" height="15"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.6a1 1 0 0 1-.25 1z"/></svg></a></p>
@@ -138,22 +137,26 @@
   <section id="rsvp" class="sec">
     <p class="eyebrow fade">R.S.V.P.</p>
     <h2 class="fade">참석 여부 전달</h2>
-    <p class="fade body-text">결혼식에 참석해주시는 모든 분들을<br>더욱 특별하게 모시고자 하오니,<br>참석 여부 전달을 부탁드립니다.</p>
+    <p class="fade body-text">함께해 주실 분들을 정성껏 모실 수 있도록<br>참석 여부를 미리 알려주시면 감사하겠습니다.</p>
     <button class="btn fade" data-open="rsvpForm">참석 여부 전달하기</button>
   </section>
 
   <!-- 계좌 -->
   <section id="account" class="sec">
-    <p class="eyebrow fade">WITH LOVE</p>
+    <p class="eyebrow fade">With Love</p>
     <h2 class="fade">마음 전하실 곳</h2>
-    <p class="fade body-text">멀리서도 축하의 마음을<br>전하고 싶으신 분들을 위해<br>계좌번호를 안내드립니다.<br><br>소중한 축하를 보내주셔서 감사드리며,<br>따뜻한 마음에 깊이 감사드립니다.</p>
+    <p class="fade body-text">참석이 어려우신 분들을 위해<br>계좌번호를 함께 적어둡니다.<br>보내주시는 마음, 오래 기억하겠습니다.</p>
     <div class="acc fade" data-side="groom"><button class="acc-head">신랑측 <i class="chev"></i></button><div class="acc-body"></div></div>
     <div class="acc fade" data-side="bride"><button class="acc-head">신부측 <i class="chev"></i></button><div class="acc-body"></div></div>
   </section>
 
   <footer>
-    <div class="script"><span data-k="groom.en"></span> &amp; <span data-k="bride.en"></span></div>
-    <p>Thank you for celebrating with us</p>
+    <img src="images/full/12.jpg" alt="" loading="lazy" class="footer-img">
+    <div class="footer-text">
+      <p class="script"><span data-k="groom.en"></span> &amp; <span data-k="bride.en"></span></p>
+      <p class="footer-msg">저희의 시작을 함께해 주셔서<br>진심으로 감사합니다.</p>
+      <button class="btn ghost" id="shareBtn2">청첩장 공유하기</button>
+    </div>
   </footer>
 </main>
 

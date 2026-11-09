@@ -19,6 +19,9 @@
   const h12 = h > 12 ? h - 12 : h;
   const timeStr = `${ampm} ${h12}시${mi ? ` ${mi}분` : ""}`;
   const fullDate = `${Y}년 ${Mo}월 ${D}일 ${DOW[dow]}요일 ${timeStr}`;
+  const pad = (n) => String(n).padStart(2, "0");
+  const dotDate = `${Y}. ${pad(Mo)}. ${pad(D)}`;
+  const shortDate = `${DOW[dow]}요일 ${timeStr}`;
 
   /* ---------- 텍스트 채우기 ---------- */
   $$("[data-k]").forEach((el) => {
@@ -26,6 +29,8 @@
     if (!v) el.hidden = true; else el.textContent = v;
   });
   $$("[data-date=full]").forEach((el) => (el.textContent = fullDate));
+  $$("[data-date=dot]").forEach((el) => (el.textContent = dotDate));
+  $$("[data-date=short]").forEach((el) => (el.textContent = shortDate));
   const venueLine = C.venue.name + (C.venue.hall ? ` ${C.venue.hall}` : "");
   $$(".venue-line").forEach((el) => (el.textContent = venueLine));
   $(".greeting").innerHTML = C.greeting.map((l) => `<p>${l || "&nbsp;"}</p>`).join("");
@@ -45,7 +50,7 @@
   };
   document.body.classList.add("lock");
   intro.addEventListener("click", endIntro);
-  setTimeout(endIntro, reduce ? 300 : 3900);
+  setTimeout(endIntro, reduce ? 300 : 4200);
 
   /* ---------- 헤더 / 플로팅 / 페이드 ---------- */
   const topbar = $("#topbar"), floating = $(".floating");
@@ -101,55 +106,55 @@
   };
   tick(); setInterval(tick, 1000);
 
-  /* ---------- 갤러리 버블 ---------- */
+  /* ---------- 갤러리 ---------- */
   const photos = C.photos;
-  const track = $("#bubbleTrack"), scroller = $("#bubbles");
-  const rand = (() => { let s = 7; return () => ((s = (s * 9301 + 49297) % 233280) / 233280); })();
-  const H = 520, COL = 168, PER = 3;
-  const cols = Math.ceil(photos.length / PER);
-  let idx = 0;
-  for (let c = 0; c < cols; c++) {
-    const n = Math.min(PER, photos.length - idx);
-    const sizes = Array.from({ length: n }, () => Math.round(118 + rand() * 46));
-    let free = H - sizes.reduce((a, b) => a + b, 0) - 20;
-    let y = 10 + (c % 2 ? free * 0.45 : free * 0.1);
-    free -= y - 10;
-    sizes.forEach((sz, k) => {
-      const slack = (COL - sz) / 2;
-      const x = 16 + c * COL + slack + (rand() * 2 - 1) * slack;
-      const i = idx++;
-      const b = document.createElement("button");
-      b.className = "bubble";
-      b.style.cssText = `width:${sz}px;height:${sz}px;left:${x}px;top:${y}px;animation-delay:${-rand() * 7}s`;
-      b.setAttribute("aria-label", `사진 ${i + 1} 크게 보기`);
-      b.innerHTML = `<img src="images/thumb/${photos[i]}.jpg" alt="" loading="lazy" draggable="false">`;
-      b.onclick = () => { if (!dragMoved) openLB(i); };
-      track.appendChild(b);
-      y += sz + Math.max(8, (free / (n)) * (0.5 + rand() * 0.8));
-    });
-  }
-  track.style.width = `${32 + cols * COL}px`;
+  const grid = $("#grid");
+  photos.forEach((p, i) => {
+    const big = i === 0 || i === 7;
+    const b = document.createElement("button");
+    if (big) b.className = "big";
+    b.setAttribute("aria-label", `사진 ${i + 1} 크게 보기`);
+    b.innerHTML = `<img src="images/${big ? "full" : "thumb"}/${p}.jpg" alt="" loading="lazy" draggable="false">`;
+    b.onclick = () => openLB(i);
+    grid.appendChild(b);
+  });
 
-  // 자동 흐름 + 드래그 스크롤(데스크톱)
-  let paused = false, resumeT, dir = 1, visible = false, dragMoved = false;
-  const pause = () => { paused = true; clearTimeout(resumeT); resumeT = setTimeout(() => (paused = false), 3500); $("#swipeHint").classList.add("gone"); };
-  ["touchstart", "wheel", "pointerdown"].forEach((ev) => scroller.addEventListener(ev, pause, { passive: true }));
-  new IntersectionObserver(([e]) => (visible = e.isIntersecting)).observe(scroller);
-  let acc = 0;
-  const drift = () => {
-    if (visible && !paused && !reduce && !lbOpen) {
-      const max = scroller.scrollWidth - scroller.clientWidth;
-      acc += 0.35 * dir;
-      if (Math.abs(acc) >= 1) { scroller.scrollLeft += Math.trunc(acc); acc -= Math.trunc(acc); }
-      if (scroller.scrollLeft >= max - 1) dir = -1; else if (scroller.scrollLeft <= 0) dir = 1;
-    }
-    requestAnimationFrame(drift);
-  };
-  requestAnimationFrame(drift);
-  let dragX = null, startLeft = 0;
-  scroller.addEventListener("pointerdown", (e) => { if (e.pointerType !== "mouse") return; dragX = e.clientX; startLeft = scroller.scrollLeft; dragMoved = false; });
-  addEventListener("pointermove", (e) => { if (dragX === null) return; const dx = e.clientX - dragX; if (Math.abs(dx) > 5) dragMoved = true; scroller.scrollLeft = startLeft - dx; });
-  addEventListener("pointerup", () => { dragX = null; setTimeout(() => (dragMoved = false), 0); });
+  /* ---------- 커버 꽃잎 ---------- */
+  (() => {
+    const cv = $("#petals");
+    if (!cv || reduce) return;
+    const ctx = cv.getContext("2d");
+    const dpr = Math.min(devicePixelRatio || 1, 2);
+    let W = 0, H = 0, on = true;
+    const size = () => { W = cv.clientWidth; H = cv.clientHeight; cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); };
+    size(); addEventListener("resize", size);
+    const tints = ["255,214,206", "247,200,190", "236,212,160", "255,236,224"];
+    const mk = (init) => ({
+      x: Math.random() * W, y: init ? Math.random() * H : -20,
+      r: 3 + Math.random() * 3.5, vy: 0.35 + Math.random() * 0.55, sw: Math.random() * 6.28,
+      sp: 0.008 + Math.random() * 0.014, rot: Math.random() * 6.28, vr: (Math.random() - 0.5) * 0.03,
+      c: tints[(Math.random() * tints.length) | 0], a: 0.35 + Math.random() * 0.35,
+    });
+    const ps = Array.from({ length: 18 }, () => mk(true));
+    new IntersectionObserver(([e]) => (on = e.isIntersecting)).observe(cv);
+    const draw = () => {
+      if (on) {
+        ctx.clearRect(0, 0, W, H);
+        ps.forEach((p, i) => {
+          p.sw += p.sp; p.y += p.vy; p.x += Math.sin(p.sw) * 0.5; p.rot += p.vr;
+          if (p.y > H + 20) ps[i] = mk(false);
+          ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.rot); ctx.scale(1, 0.55 + Math.abs(Math.sin(p.sw)) * 0.45);
+          ctx.fillStyle = `rgba(${p.c},${p.a})`;
+          ctx.beginPath(); ctx.moveTo(0, -p.r);
+          ctx.bezierCurveTo(p.r, -p.r, p.r, p.r * 0.6, 0, p.r);
+          ctx.bezierCurveTo(-p.r, p.r * 0.6, -p.r, -p.r, 0, -p.r);
+          ctx.fill(); ctx.restore();
+        });
+      }
+      requestAnimationFrame(draw);
+    };
+    requestAnimationFrame(draw);
+  })();
 
   /* ---------- 라이트박스 ---------- */
   const lb = $("#lightbox"), lbTrack = $("#lbTrack");
@@ -213,7 +218,7 @@
     toast(msg);
   }
   $("#copyAddr").onclick = () => copy(C.venue.address, "주소가 복사되었습니다");
-  $("#shareBtn").onclick = async () => {
+  $("#shareBtn").onclick = $("#shareBtn2").onclick = async () => {
     const data = { title: document.title, text: `${C.groom.name} ♥ ${C.bride.name} 결혼합니다\n${fullDate}\n${venueLine}`, url: location.href.split("#")[0] };
     if (navigator.share) { try { await navigator.share(data); } catch {} }
     else copy(data.url, "청첩장 링크가 복사되었습니다");
