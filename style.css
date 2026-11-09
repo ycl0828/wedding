@@ -119,12 +119,12 @@ h2{font-weight:400;font-size:21px;margin-bottom:40px;letter-spacing:.02em;color:
 h2::after{content:"";display:block;width:64px;height:9px;margin:16px auto 0;
   background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 9'%3E%3Cpath d='M0 4.5h25M39 4.5h25' stroke='%23b08b52' stroke-width='.8'/%3E%3Cpath d='M32 .5l4 4-4 4-4-4z' fill='none' stroke='%23b08b52' stroke-width='.8'/%3E%3Ccircle cx='32' cy='4.5' r='1.2' fill='%23b08b52'/%3E%3C/svg%3E") center/contain no-repeat}
 .body-text{font-size:14.5px;color:var(--ink)}
-.greeting p{min-height:1em;font-size:15px;line-height:2.05}
+.greeting p{min-height:1em;font-size:clamp(13.5px,3.9vw,15px);line-height:2.05}
 .sec+.sec::before{content:"";position:absolute;top:0;left:50%;width:1px;height:44px;background:linear-gradient(transparent,var(--gold));opacity:.5}
 
 /* 인사말 액자 */
 #invite{padding-top:80px}
-.frame{position:relative;padding:52px 22px 44px;border:1px solid rgba(176,139,82,.55);outline:1px solid rgba(176,139,82,.3);outline-offset:-7px;background:rgba(255,255,255,.35)}
+.frame{position:relative;padding:52px 16px 44px;border:1px solid rgba(176,139,82,.55);outline:1px solid rgba(176,139,82,.3);outline-offset:-7px;background:rgba(255,255,255,.35)}
 .frame::before,.frame::after{content:"";position:absolute;width:42px;height:42px;
   background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cg fill='none' stroke='%23b08b52' stroke-width='.9'%3E%3Cpath d='M2 40V14C2 7 7 2 14 2h26'/%3E%3Cpath d='M8 40V18c0-6 4-10 10-10h22'/%3E%3Ccircle cx='14' cy='14' r='3'/%3E%3C/g%3E%3C/svg%3E") no-repeat}
 .frame::before{top:-4px;left:-4px}
