@@ -50,8 +50,8 @@ window.WEDDING = {
   accounts: {
     groom: [
       { role: "신랑", name: "이예찬", bank: "농협은행", number: "312-5127-0438-51" },
-      { role: "신랑 아버지", name: "이광희", bank: "은행명", number: "000-0000-0000-00" },
-      { role: "신랑 어머니", name: "육순희", bank: "은행명", number: "000-0000-0000-00" },
+      { role: "신랑 아버지", name: "이광희", bank: "KB국민은행", number: "920301-01-786822" },
+      { role: "신랑 어머니", name: "육순희", bank: "토스뱅크", number: "1000-2616-3654" },
     ],
     bride: [
       { role: "신부", name: "함현주", bank: "케이뱅크", number: "100-206-927183" },
