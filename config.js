@@ -6,7 +6,7 @@ window.WEDDING = {
   bride: { name: "함현주", short: "현주", en: "Hyunju", father: "함관수", mother: "정은경", relation: "딸" },
 
   // ⚠️ 예식 일시 — 반드시 실제 날짜/시간으로 바꿔주세요 (24시간 형식)
-  date: "2027-03-20T12:00:00+09:00",
+  date: "2027-01-02T17:00:00+09:00",
 
   venue: {
     name: "로얄파크컨벤션",
