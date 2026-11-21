@@ -55,7 +55,6 @@ window.WEDDING = {
     ],
     bride: [
       { role: "신부", name: "함현주", bank: "케이뱅크", number: "100-206-927183" },
-      { role: "신부 아버지", name: "함관수", bank: "은행명", number: "000-0000-0000-00" },
       { role: "신부 어머니", name: "정은경", bank: "농협은행", number: "104-02-324943" },
     ],
   },
