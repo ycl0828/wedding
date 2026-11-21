@@ -50,7 +50,33 @@
   };
   document.body.classList.add("lock");
   intro.addEventListener("click", endIntro);
-  setTimeout(endIntro, reduce ? 300 : 4200);
+
+  // 손글씨 애니메이션: 글자마다 윤곽 길이에 비례한 속도로, 앞 글자가 끝나갈 즈음 다음 글자 시작
+  const writeSign = () => {
+    const pens = $$("#intro .sign .pen");
+    if (!pens.length || reduce || !pens[0].getTotalLength) return 0;
+    const glyphs = $$("#intro .sign [data-c]").map((p) => p.dataset.c);
+    const lens = pens.map((p) => p.getTotalLength());
+    const START = 650, TOTAL = 3000, WORD_GAP = 260;
+    const k = TOTAL / lens.reduce((a, b) => a + b, 0);
+    let t = START, prev = "";
+    pens.forEach((pen, i) => {
+      const L = lens[i], dur = Math.max(160, L * k);
+      if (prev && (glyphs[i] === "&" || prev === "&")) t += WORD_GAP;   // 단어 사이 펜 떼는 순간
+      pen.style.strokeDasharray = `${L} ${L}`;
+      pen.style.strokeDashoffset = L;
+      pen.animate([{ strokeDashoffset: L }, { strokeDashoffset: 0 }],
+        { duration: dur, delay: t, easing: "cubic-bezier(.45,.05,.55,.95)", fill: "forwards" });
+      pen.animate([{ fillOpacity: 0 }, { fillOpacity: 1 }],
+        { duration: 500, delay: t + dur * 0.7, easing: "ease-out", fill: "forwards" });
+      t += dur * 0.82;   // 이어 쓰듯 살짝 겹치게
+      prev = glyphs[i];
+    });
+    return t + 200;
+  };
+  const signEnd = writeSign();
+  if (signEnd) intro.style.setProperty("--sign-end", `${(signEnd - 300) / 1000}s`);
+  setTimeout(endIntro, reduce ? 300 : Math.max(4200, signEnd + 1600));
 
   /* ---------- 헤더 / 플로팅 / 페이드 ---------- */
   const topbar = $("#topbar"), floating = $(".floating");
