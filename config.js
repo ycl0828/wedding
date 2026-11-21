@@ -63,6 +63,6 @@ window.WEDDING = {
   // 처음 접속 시 참석 여부 팝업 띄우기
   rsvpPopupOnLoad: true,
 
-  cover: "images/full/01.jpg",
-  photos: Array.from({ length: 12 }, (_, i) => String(i + 1).padStart(2, "0")),
+  cover: "images/full/02.jpg",
+  photos: Array.from({ length: 9 }, (_, i) => String(i + 1).padStart(2, "0")),
 };
