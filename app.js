@@ -136,11 +136,14 @@
   const photos = C.photos;
   const grid = $("#grid");
   photos.forEach((p, i) => {
+    // 3칸 격자를 빈칸 없이 채우는 배치: 큰 정사각 2장(1·8번째), 가로로 긴 2장(10·13번째)
     const big = i === 0 || i === 7;
+    const wide = !big && photos.length === 13 && (i === 9 || i === 12);
     const b = document.createElement("button");
     if (big) b.className = "big";
+    if (wide) b.className = "wide";
     b.setAttribute("aria-label", `사진 ${i + 1} 크게 보기`);
-    b.innerHTML = `<img src="images/${big ? "full" : "thumb"}/${p}.jpg" alt="" loading="lazy" draggable="false">`;
+    b.innerHTML = `<img src="images/${big || wide ? "full" : "thumb"}/${p}.jpg" alt="" loading="lazy" draggable="false">`;
     b.onclick = () => openLB(i);
     grid.appendChild(b);
   });

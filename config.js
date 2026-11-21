@@ -64,5 +64,5 @@ window.WEDDING = {
   rsvpPopupOnLoad: true,
 
   cover: "images/full/02.jpg",
-  photos: Array.from({ length: 9 }, (_, i) => String(i + 1).padStart(2, "0")),
+  photos: Array.from({ length: 13 }, (_, i) => String(i + 1).padStart(2, "0")),
 };
