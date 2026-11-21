@@ -76,7 +76,43 @@
   };
   const signEnd = writeSign();
   if (signEnd) intro.style.setProperty("--sign-end", `${(signEnd - 300) / 1000}s`);
-  setTimeout(endIntro, reduce ? 300 : Math.max(4200, signEnd + 1600));
+  // 새해 불꽃: 이름을 다 쓴 뒤 금빛 불꽃이 세 번 터짐
+  const fireworks = (startAt) => {
+    const cv = $("#introFx");
+    if (!cv || reduce) return;
+    const ctx = cv.getContext("2d"), dpr = Math.min(devicePixelRatio || 1, 2);
+    const W = cv.clientWidth, H = cv.clientHeight;
+    cv.width = W * dpr; cv.height = H * dpr; ctx.scale(dpr, dpr);
+    const cols = ["230,207,154", "245,227,181", "176,139,82", "255,255,255", "228,190,150"];
+    const parts = [];
+    const burst = (x, y) => {
+      const n = 54, sp = Math.min(W, 480) / 160;
+      for (let i = 0; i < n; i++) {
+        const a = (i / n) * Math.PI * 2 + Math.random() * 0.1, v = sp * (0.55 + Math.random() * 0.6);
+        parts.push({ x, y, vx: Math.cos(a) * v, vy: Math.sin(a) * v, life: 1, decay: 0.011 + Math.random() * 0.01,
+          c: cols[(Math.random() * cols.length) | 0], r: 1 + Math.random() * 1.3 });
+      }
+    };
+    [[0.28, 0.27], [0.72, 0.22], [0.5, 0.14]].forEach(([fx, fy], k) =>
+      setTimeout(() => burst(W * fx, H * fy), startAt + k * 380));
+    const loop = () => {
+      if (introDone && !parts.length) return;
+      ctx.globalCompositeOperation = "destination-out";
+      ctx.fillStyle = "rgba(0,0,0,.22)"; ctx.fillRect(0, 0, W, H);
+      ctx.globalCompositeOperation = "lighter";
+      for (let i = parts.length - 1; i >= 0; i--) {
+        const p = parts[i];
+        p.vx *= 0.985; p.vy = p.vy * 0.985 + 0.025; p.x += p.vx; p.y += p.vy; p.life -= p.decay;
+        if (p.life <= 0) { parts.splice(i, 1); continue; }
+        ctx.fillStyle = `rgba(${p.c},${p.life})`;
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 6.283); ctx.fill();
+      }
+      requestAnimationFrame(loop);
+    };
+    requestAnimationFrame(loop);
+  };
+  fireworks(Math.max(0, (signEnd || 3600) - 250));
+  setTimeout(endIntro, reduce ? 300 : Math.max(4200, (signEnd || 3600) + 2300));
 
   /* ---------- 헤더 / 플로팅 / 페이드 ---------- */
   const topbar = $("#topbar"), floating = $(".floating");
@@ -109,7 +145,7 @@
     for (let i = 0; i < first; i++) html += "<span></span>";
     for (let d = 1; d <= days; d++) {
       const w = (first + d - 1) % 7;
-      const cls = [w === 0 ? "sun" : w === 6 ? "sat" : "", d === D ? "day-on" : ""].join(" ");
+      const cls = [w === 0 ? "sun" : w === 6 ? "sat" : "", d === D ? "day-on" : "", Mo === 1 && d === 1 && d !== D ? "hol" : ""].join(" ");
       html += `<span class="${cls}">${d}</span>`;
     }
     $("#calendar").innerHTML = html + "</div>";
@@ -157,14 +193,14 @@
     let W = 0, H = 0, on = true;
     const size = () => { W = cv.clientWidth; H = cv.clientHeight; cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); };
     size(); addEventListener("resize", size);
-    const tints = ["255,214,206", "247,200,190", "236,212,160", "255,236,224"];
+    const tints = ["255,255,255", "245,227,181", "230,207,154", "255,246,226"];
     const mk = (init) => ({
       x: Math.random() * W, y: init ? Math.random() * H : -20,
       r: 3 + Math.random() * 3.5, vy: 0.35 + Math.random() * 0.55, sw: Math.random() * 6.28,
       sp: 0.008 + Math.random() * 0.014, rot: Math.random() * 6.28, vr: (Math.random() - 0.5) * 0.03,
       c: tints[(Math.random() * tints.length) | 0], a: 0.35 + Math.random() * 0.35,
     });
-    const ps = Array.from({ length: 18 }, () => mk(true));
+    const ps = Array.from({ length: 26 }, () => mk(true));
     new IntersectionObserver(([e]) => (on = e.isIntersecting)).observe(cv);
     const draw = () => {
       if (on) {
@@ -172,15 +208,44 @@
         ps.forEach((p, i) => {
           p.sw += p.sp; p.y += p.vy; p.x += Math.sin(p.sw) * 0.5; p.rot += p.vr;
           if (p.y > H + 20) ps[i] = mk(false);
-          ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.rot); ctx.scale(1, 0.55 + Math.abs(Math.sin(p.sw)) * 0.45);
-          ctx.fillStyle = `rgba(${p.c},${p.a})`;
-          ctx.beginPath(); ctx.moveTo(0, -p.r);
-          ctx.bezierCurveTo(p.r, -p.r, p.r, p.r * 0.6, 0, p.r);
-          ctx.bezierCurveTo(-p.r, p.r * 0.6, -p.r, -p.r, 0, -p.r);
-          ctx.fill(); ctx.restore();
+          // 반짝임: 작게 빛나는 점 + 가끔 네 갈래 별빛
+          const tw = 0.55 + Math.abs(Math.sin(p.sw * 2.3)) * 0.45, a = p.a * tw, r = p.r * 0.55;
+          ctx.save(); ctx.translate(p.x, p.y);
+          const g = ctx.createRadialGradient(0, 0, 0, 0, 0, r * 3);
+          g.addColorStop(0, `rgba(${p.c},${a})`); g.addColorStop(1, `rgba(${p.c},0)`);
+          ctx.fillStyle = g; ctx.beginPath(); ctx.arc(0, 0, r * 3, 0, 6.283); ctx.fill();
+          if (i % 3 === 0) {
+            ctx.rotate(p.rot); ctx.strokeStyle = `rgba(${p.c},${a * 0.9})`; ctx.lineWidth = 0.8;
+            ctx.beginPath(); ctx.moveTo(-r * 4, 0); ctx.lineTo(r * 4, 0); ctx.moveTo(0, -r * 4); ctx.lineTo(0, r * 4); ctx.stroke();
+          }
+          ctx.restore();
         });
       }
       requestAnimationFrame(draw);
+    };
+    requestAnimationFrame(draw);
+  })();
+
+  /* ---------- 새해 섹션 별빛 ---------- */
+  (() => {
+    const cv = $("#nyStars");
+    if (!cv) return;
+    const ctx = cv.getContext("2d"), dpr = Math.min(devicePixelRatio || 1, 2);
+    let W = 0, H = 0, on = false;
+    const size = () => { W = cv.clientWidth; H = cv.clientHeight; cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); };
+    size(); addEventListener("resize", size);
+    const stars = Array.from({ length: 46 }, () => ({ x: Math.random(), y: Math.random(), r: 0.4 + Math.random() * 1.2, ph: Math.random() * 6.28, sp: 0.01 + Math.random() * 0.03 }));
+    new IntersectionObserver(([e]) => (on = e.isIntersecting)).observe(cv);
+    const draw = () => {
+      if (on || reduce) {
+        ctx.clearRect(0, 0, W, H);
+        stars.forEach((s) => {
+          if (!reduce) s.ph += s.sp;
+          ctx.fillStyle = `rgba(245,227,181,${0.25 + Math.abs(Math.sin(s.ph)) * 0.6})`;
+          ctx.beginPath(); ctx.arc(s.x * W, s.y * H, s.r, 0, 6.283); ctx.fill();
+        });
+      }
+      if (!reduce) requestAnimationFrame(draw);
     };
     requestAnimationFrame(draw);
   })();
